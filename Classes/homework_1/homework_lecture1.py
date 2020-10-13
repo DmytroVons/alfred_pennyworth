@@ -27,6 +27,8 @@ class PersonWithLimitedSkills:
     Make class which is limited to 2 actions - eat and sleep
     Any other attributes addition should result in an error.
     """
+    eat = 'eat'
+    sleep = 'sleep'
     __isfrozen = False
 
     def __setattr__(self, key, value):
@@ -37,18 +39,13 @@ class PersonWithLimitedSkills:
     def _freeze(self):
         self.__isfrozen = True
 
-    def eat(self):
-        print('This men now is eating!')
 
-    def sleep(self):
-        print("I'm sleeping don't disturb me!")
-
-
-class HiddenAttrs:
+class HiddenAtc
     """
     Make class which never tells about its attributes.
     Its attribute list is always empty and attributes dictionary is always empty.
     """
+
     def __dir__(self):
         return []
 
@@ -61,11 +58,9 @@ class CallableInstances:
         Make class which takes func parameter on initialization, which is a callable that can be passed.
     Then object of this class may be called - callable passed on init will be called with passed parameters.
     """
+
     def __init__(self, f):
         self._f = f
 
     def __call__(self, *args, **kwargs):
         return self._f(*args, **kwargs)
-
-
-
