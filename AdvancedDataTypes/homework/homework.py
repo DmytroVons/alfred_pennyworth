@@ -1,5 +1,6 @@
 import math
 from typing import List, Dict, Union, Callable
+import copy
 
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
@@ -20,10 +21,11 @@ def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
        remove_dict_field([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 'age')
         >>> [{'name': 'Alex'}, {'name': 'denys'}]
     """
-    for dlt in data:
-        for k_v in redundant_keys:
-            dlt.pop(k_v)
-    return data
+    dict2 = copy.deepcopy(data)
+    for item in dict2:
+        for key in redundant_keys:
+            item.pop(key)
+    return dict2
 
 
 def task_3_find_item_via_value(data: DT, value) -> DT:
