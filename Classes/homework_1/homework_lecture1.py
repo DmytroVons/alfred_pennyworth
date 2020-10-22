@@ -27,14 +27,29 @@ class PersonWithLimitedSkills:
     Make class which is limited to 2 actions - eat and sleep
     Any other attributes addition should result in an error.
     """
+<<<<<<< HEAD
     eat = 'eat'
     sleep = 'sleep'
+=======
+>>>>>>> c36d697ab7cc6d6fe97f9ea223a3613376f61736
     __isfrozen = False
 
     def __setattr__(self, key, value):
         if self.__isfrozen and not hasattr(self, key):
             raise TypeError("%r is a frozen class" % self)
         object.__setattr__(self, key, value)
+<<<<<<< HEAD
+=======
+
+    def _freeze(self):
+        self.__isfrozen = True
+
+    def eat(self):
+        print('This men now is eating!')
+
+    def sleep(self):
+        print("I'm sleeping don't disturb me!")
+>>>>>>> c36d697ab7cc6d6fe97f9ea223a3613376f61736
 
     def _freeze(self):
         self.__isfrozen = True
@@ -45,6 +60,11 @@ class HiddenAtc
     Make class which never tells about its attributes.
     Its attribute list is always empty and attributes dictionary is always empty.
     """
+    def __dir__(self):
+        return []
+
+    def __dict__(self):
+        return {}
 
     def __dir__(self):
         return []
@@ -58,9 +78,18 @@ class CallableInstances:
         Make class which takes func parameter on initialization, which is a callable that can be passed.
     Then object of this class may be called - callable passed on init will be called with passed parameters.
     """
+<<<<<<< HEAD
 
+=======
+>>>>>>> c36d697ab7cc6d6fe97f9ea223a3613376f61736
     def __init__(self, f):
         self._f = f
 
     def __call__(self, *args, **kwargs):
         return self._f(*args, **kwargs)
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> c36d697ab7cc6d6fe97f9ea223a3613376f61736
