@@ -22,7 +22,7 @@ def generate_alphabet() -> Alphabet:
         {'t': 57}, {'u': 34}, {'v': 70}, {'w': 13}, {'x': 86}, {'y': 12}, {'z': 82}
     ]
     """
-    my_list = [dict([(words, random.randint(0, 100))]) for words in string.ascii_lowercase]
+    my_list = [{words: random.randint(0, 100)} for words in string.ascii_lowercase]
     return my_list
 
 
@@ -34,4 +34,3 @@ def sort_alphabet(data: Alphabet) -> Alphabet:
         >>> [{'a': 5}, {'c': 23}, {'b': 57}]
     """
     return sorted(data, key=lambda el: el.items())
-    #sorted(data.items(), key=itemgetter(1))
