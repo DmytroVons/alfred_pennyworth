@@ -24,6 +24,7 @@ def generate_alphabet() -> Alphabet:
     """
     my_list = [{words: random.randint(0, 100)} for words in string.ascii_lowercase]
     return my_list
+    #
 
 
 def sort_alphabet(data: Alphabet) -> Alphabet:
