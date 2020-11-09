@@ -2,7 +2,10 @@
 # This decorator function should return the result of another function multiplied by two
 def double_result(func):
     # return function result multiplied by two
-    pass
+    def adder(*args):
+        return func(*args) * 2
+
+    return adder
 
 
 def add(a, b):
@@ -26,7 +29,14 @@ add(5, 5)  # 20
 
 def only_even_parameters(func):
     # if args passed to func are not even - return "Please only use even numbers!"
-    pass
+    def even_number(*args):
+        for arg in args:
+            if arg % 2 != 0:
+                print('Please only use even numbers!')
+                pass
+        return func
+
+    return even_number
 
 
 @only_even_parameters
@@ -50,7 +60,12 @@ def multiply(a, b, c, d, e):
 
 def logged(func):
     # log function arguments and its return value
-    pass
+    def printer(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(f'kwargs: {kwargs}, args: {args}, \nresult is: {result}')
+        return result
+
+    return printer
 
 
 @logged
@@ -71,8 +86,17 @@ func(4, 4, 4)
 # If it is wrong, it should print("Bad Type"), otherwise function should be executed.
 
 def type_check(correct_type):
-    # put code here
-    pass
+    def checker(func):
+        def pass_function(arg):
+            if type(arg) == type(correct_type):
+                return func
+            else:
+                print ("Bad Type")
+                pass
+
+        return pass_function
+
+    return checker
 
 
 @type_check(int)
