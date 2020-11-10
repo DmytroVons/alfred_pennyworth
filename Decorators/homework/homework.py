@@ -1,3 +1,5 @@
+import logging
+
 # 1. double_result
 # This decorator function should return the result of another function multiplied by two
 def double_result(func):
@@ -59,9 +61,12 @@ def multiply(a, b, c, d, e):
 # and **kwargs and print them both):
 
 def logged(func):
+    logging.basicConfig(format='%(levelname)s - %(message)s', level=logging.INFO)
     # log function arguments and its return value
     def printer(*args, **kwargs):
+        logging.info(f'Arguments for this function are: args - {args}, kwargs - {kwargs}')
         result = func(*args, **kwargs)
+        logging.info(f'Result of this function is: {result}')
         print(f'kwargs: {kwargs}, args: {args}, \nresult is: {result}')
         return result
 
