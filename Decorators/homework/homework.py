@@ -1,5 +1,6 @@
 import logging
 
+
 # 1. double_result
 # This decorator function should return the result of another function multiplied by two
 def double_result(func):
@@ -62,11 +63,12 @@ def multiply(a, b, c, d, e):
 
 def logged(func):
     logging.basicConfig(format='%(levelname)s - %(message)s', level=logging.INFO)
+
     # log function arguments and its return value
     def printer(*args, **kwargs):
-        logging.info(f'Arguments for this function are: args - {args}, kwargs - {kwargs}')
+        logging.info(f'args: {args}, kwargs: {kwargs}')
         result = func(*args, **kwargs)
-        logging.info(f'Result of this function is: {result}')
+        logging.info(f'Result: {result}')
         print(f'kwargs: {kwargs}, args: {args}, \nresult is: {result}')
         return result
 
@@ -93,10 +95,10 @@ func(4, 4, 4)
 def type_check(correct_type):
     def checker(func):
         def pass_function(arg):
-            if type(arg) == type(correct_type):
+            if type(arg) == correct_type:
                 return func
             else:
-                print ("Bad Type")
+                print("Bad Type")
                 pass
 
         return pass_function
@@ -120,4 +122,4 @@ def first_letter(word):
 
 print(first_letter('Hello World'))
 first_letter(['Not', 'A', 'String'])  # "Bad Type" should be printed, since non-str passed to decorated function
-#finish
+# finish
