@@ -120,3 +120,4 @@ def first_letter(word):
 
 print(first_letter('Hello World'))
 first_letter(['Not', 'A', 'String'])  # "Bad Type" should be printed, since non-str passed to decorated function
+#finish
