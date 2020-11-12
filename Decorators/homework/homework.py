@@ -11,19 +11,14 @@ def double_result(func):
     return adder
 
 
-def add(a, b):
+
+def plus_1(a, b):
     return a + b
-
-
-add(5, 5)  # 10
 
 
 @double_result
-def add(a, b):
+def plus_2(a, b):
     return a + b
-
-
-add(5, 5)  # 20
 
 
 # 2. only_even_parameters
@@ -35,8 +30,9 @@ def only_even_parameters(func):
     def even_number(*args):
         for arg in args:
             if arg % 2 != 0:
-                print('Please only use even numbers!')
-                pass
+                raise TypeError("Please only use even numbers")
+            else:
+                return args
         return func
 
     return even_number
@@ -45,10 +41,6 @@ def only_even_parameters(func):
 @only_even_parameters
 def add(a, b):
     return a + b
-
-
-add(5, 5)  # "Please add even numbers!"
-add(4, 4)  # 8
 
 
 @only_even_parameters
@@ -80,9 +72,6 @@ def func(*args):
     return 3 + len(args)
 
 
-func(4, 4, 4)
-
-
 # you called func(4, 4, 4)
 # it returned 6
 
@@ -111,15 +100,24 @@ def times2(num):
     return num * 2
 
 
-print(times2(2))
-times2('Not A Number')  # "Bad Type" should be printed, since non-int passed to decorated function
-
-
 @type_check(str)
 def first_letter(word):
     return word[0]
 
 
-print(first_letter('Hello World'))
-first_letter(['Not', 'A', 'String'])  # "Bad Type" should be printed, since non-str passed to decorated function
-# finish
+if __name__ == 'main':
+    #   task 1
+    plus_1(5, 5)  # 10
+    plus_2(5, 5)  # 20
+    #   task 2
+    a1 = add(5, 5)  # "Please add even numbers!"
+    b2 = add(4, 4)  # 8
+    print(b2)
+    print(a1)
+    #   task 3
+    func(4, 4, 4)
+    #   task 4
+    print(times2(2))
+    times2('Not A Number')  # "Bad Type" should be printed, since non-int passed to decorated function
+    print(first_letter('Hello World'))
+    first_letter(['Not', 'A', 'String'])  # "Bad Type" should be printed, since non-str passed to decorated function
