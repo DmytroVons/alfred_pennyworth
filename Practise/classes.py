@@ -13,6 +13,7 @@ class TrollIsAngry(Exception):
 
 
 class Person:
+
     def __init__(self, money):
         self.money = money
 
@@ -80,6 +81,8 @@ Task 3. recursion + factorial
 def argument_test_natural_number(f):
     # check is arg to f is int and > 0, raise error otherwise
 '''
+
+
 def decorator(func):
     def wrapper(num):
         if num > 0 and type(num) == int:
@@ -162,6 +165,8 @@ def get_number():
             m = [i * i for i in l]
             print(f'The quater of your numbers is: {sum(m)}')
             is_zero_sum = False
+
+
 '''
 Task 6. Одне із застосувань множинного успадкування - розширення функціональності класу якимось заздалегідь 
 визначеним способом.
@@ -180,9 +185,49 @@ class Loggable:
 щоб при додаванні елемента в список за допомогою методу append в лог відправлялося повідомлення,
 що складається з тількищо доданого елемента.
 '''
+import time
 
 
-if __name__ == '__main__':
+class Loggable:
+
+    def log(self, msg):
+        print('{}: {}'.format(time.ctime(), msg))
+        return
+
+
+class LoggableList(Loggable, list):
+
+    def __init__(self, data):
+        super().__init__(data)
+
+    def append(self, element):
+        super().append(element)
+        self.log(msg=element)
+
+
+'''
+7. Реалізуйте клас PositiveList, унаслідував його від класу list, для зберігання позитивних цілих чисел.
+Також реалізуйте нове виключення NonPositiveError.
+У класі PositiveList перевизначите метод append (self, x) таким чином, щоб при спробі додати
+ непозитивним ціле число викликалося виключення  NonPositiveError і число не додавалося,
+ а при спробі додати позитивне ціле число, число додавалося б як в стандартний list.
+'''
+
+
+class NonPositiveError(Exception):
+    pass
+
+
+class PositiveList(list):
+
+    def append(self, num):
+        if num > 0 and type(num) == int:
+            super().append(num)
+        else:
+            raise NonPositiveError("Your number isn`t positive")
+
+
+if __name__ == 'main':
     pass
 # task 1
 #    vasya = Person(300)
@@ -197,3 +242,10 @@ if __name__ == '__main__':
 # task 5
 #    get_number()
 # task 6
+#    log_list = LoggableList([1, 2, 3])
+#    log_list.append(4)
+#    print(log_list)
+# task 7
+#    num = PositiveList([])
+#    num.append(-1)
+#    print(num)
