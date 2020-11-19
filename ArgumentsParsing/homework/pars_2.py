@@ -4,7 +4,7 @@ from statistics import mode
 from time import gmtime, strftime
 
 
-def found_grade(source_file_path):
+def found_grade():
     max_grade = 0
     current_number = 0
     max_number_of_row = 0
@@ -21,7 +21,7 @@ def found_grade(source_file_path):
     return max_number_of_row
 
 
-def get_type_beer(source_file_path, row_number):
+def get_type_beer(row_number):
     current_number = 0
     with open(arguments.source_file_path, 'r') as csv_data:
         beer_dict = csv.DictReader(csv_data)
@@ -32,7 +32,7 @@ def get_type_beer(source_file_path, row_number):
                 return
 
 
-def popular_name(source_file_path):
+def popular_name():
     beer_list = []
     with open(arguments.source_file_path, 'r') as csv_data:
         beer_dict = csv.DictReader(csv_data)
@@ -41,7 +41,7 @@ def popular_name(source_file_path):
     print(f'The most popular name is: {mode(beer_list)}\n')
 
 
-def best_day(source_file_path):
+def best_day():
     days = {}
     with open(arguments.source_file_path, 'r') as csv_data:
         beer_dict = csv.DictReader(csv_data)
@@ -54,7 +54,7 @@ def best_day(source_file_path):
         print(f'The most viwed day is {max(days, key=lambda key: days[key])}\n')
 
 
-def count_review(source_file_path):
+def count_review():
     reviews = {}
     with open(arguments.source_file_path, 'r') as csv_data:
         beer_dict = csv.DictReader(csv_data)
@@ -99,11 +99,11 @@ def parse_arguments():
 if __name__ == "__main__":
     arguments = parse_arguments()
     if arguments.beer_type:
-        max_row = found_grade(arguments.source_file_path)
-        get_type_beer(arguments.source_file_path, max_row)
+        max_row = found_grade()
+        get_type_beer(max_row)
     if arguments.beer_name:
-        popular_name(arguments.source_file_path)
+        popular_name()
     if arguments.day_of_review:
-        best_day(arguments.source_file_path)
+        best_day()
     if arguments.reviewer_stats:
-        count_review(arguments.source_file_path)
+        count_review()
