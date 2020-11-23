@@ -47,10 +47,13 @@ def best_day():
         beer_dict = csv.DictReader(csv_data)
         for row in beer_dict:
             day = strftime(f'"%a, %d %b %Y +0000"', gmtime(float(row['review_time'])))
-            if day in days:
-                days[day] += 1
-            else:
-                days[day] = 0
+            try:
+                if day in days:
+                    days[day] += 1
+                else:
+                    days[day] = 0
+            except object:
+                break
         print(f'The most viwed day is {max(days, key=lambda key: days[key])}\n')
 
 
