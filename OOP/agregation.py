@@ -14,7 +14,7 @@ class Guitare:
         self.scale = scale
 
     def play_score(self):
-        print(f'John Lennon play {self.scale.scale_key} scale in {self.tempo} tempo.')
+        print(f'John Lennon play {self.scale.scale_key} scale in {self.tempo} beats per minute.')
 
 
 if __name__ == '__main__':

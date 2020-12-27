@@ -9,6 +9,7 @@ if __name__ == '__main__':
     class Foo:
         __metaclass__ = Basic
 
+
     class Bar(Foo):
         pass
 
